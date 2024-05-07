@@ -18,10 +18,10 @@ jobs:
     - name: Build code
       run: |
         pip install pyinstaller
-        pyinstaller -F -i logo.png -w main.py -p core.py --hidden-import core
+        pyinstaller -F main.py -p core.py --hidden-import core
     - name: Publish package
       uses: actions/upload-artifact@v4
       with:
         name: Windows-Canary
-        path: D:\a\deploy\deploy\deploy\dist\__init__.exe
+        path: .\dist\__init__.exe
         if-no-files-found: error
