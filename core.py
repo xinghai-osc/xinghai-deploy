@@ -5,20 +5,21 @@ import json
 import os
 
 # 定义部署应用程序的函数
-def deploy(text):
+async def deploy(text):
     # 发送GET请求获取响应
     response = requests.get(text)
-    message = json.loads(response.text)
+    app_list = json.loads(response.text)
     id=0
-    while message[id]['id'] != "not":  # 假设 "not" 是结束循环的条件
+    while len(app_list)!=id:  # 使用len函数防止死循环。
         # 下载安装程序
-        print(f"正在下载 {message[id]['name']}...")
-        installer = requests.get(message[id]['url'])
-        file_path = R"C:\xinghai\temp\d_"+message[id]['name']+"_installer.exe"
+        print(f"正在下载 {app_list[id]['name']}...")
+        installer = requests.get(app_list[id]['url'])
+        file_path = R"C:\xinghai\deploy\installer_"+app_list[id]['name']+"_installer.exe"
          # 创建临时文件并写入安装程序内容
+        os.makedirs("C:\\xinghai\\deploy\\", exist_ok=True)
         with open(file_path, 'wb') as f:
             f.write(installer.content)
-            print(f"{message[id]['name']} 的临时文件路径: {file_path}")
+            print(f"{app_list[id]['name']} 的临时文件路径: {file_path}")
             # 在命令行中启动安装程序
             f.close()
             os.system('start '+file_path)  # 使用文件名启动，避免路径问题
