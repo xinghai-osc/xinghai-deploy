@@ -1,0 +1,27 @@
+name: Build Canary
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+    - name: Build code
+      run: |
+        pip install pyinstaller
+        pyinstaller -F -i logo.png -w main.py -p core.py --hidden-import core
+    - name: Publish package
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-Canary
+        path: D:\a\deploy\deploy\deploy\dist\__init__.exe
+        if-no-files-found: error
