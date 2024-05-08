@@ -6,10 +6,13 @@ import asyncio
 main = Tk()
 main.title("星海部署-XinghaiDeploy")
 main.geometry("550x300")
+
 # main.iconphoto(False, PhotoImage(file='./asstes/logo.png'))
 # 上面那行设置图标的，不知道为什么打包后找不到文件。
 
 async def deploy(text):
+    if text == None:
+        small_text.configure(text="请输入地址！")
     small_text.configure(text="正在部署中...")
     await core.deploy(text)
     small_text.configure(text="部署完成！")
@@ -31,4 +34,4 @@ btn.place(relx=0.5, rely=0.9, anchor=CENTER)  # 按钮居中
 if len(sys.argv) < 2:
     main.mainloop()
 else:
-    deploy("")
+    deploy(sys.argv[1])
