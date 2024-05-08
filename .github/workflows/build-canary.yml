@@ -23,5 +23,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Windows-Canary
-        path: .\dist\__init__.exe
+        path: D:\a\xinghai-deploy\xinghai-deploy\dist\main.exe
         if-no-files-found: error
