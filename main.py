@@ -6,16 +6,12 @@ import asyncio
 main = Tk()
 main.title("星海部署-XinghaiDeploy")
 main.geometry("550x300")
-main.iconphoto(False, PhotoImage(file='./logo.png'))
+main.iconphoto(False, PhotoImage(file='./asstes/logo.png'))
 
 async def deploy(text):
-    if text == "":
-        await core.deploy(sys.argv[1])
-        small_text.configure(text="部署完成！")
-    else:
-        small_text.configure(text="正在部署中...")
-        await core.deploy(text)
-        small_text.configure(text="部署完成！")
+    small_text.configure(text="正在部署中...")
+    await core.deploy(text)
+    small_text.configure(text="部署完成！")
 
 
 # 使用相对单位调整字体大小
