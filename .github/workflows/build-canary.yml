@@ -19,7 +19,7 @@ jobs:
     - name: Build code
       run: |
         pip install pyinstaller
-        pyinstaller -F main.py -p core.py --hidden-import core
+        pyinstaller -F -w main.py -p core.py -p asstes/logo.png -i asstes/logo.ico --hidden-import core
     - name: Publish package
       uses: actions/upload-artifact@v4
       with:
@@ -41,7 +41,7 @@ jobs:
       - name: Build code
         run: |
           pip install pyinstaller
-          pyinstaller -F main.py -p core.py --hidden-import core
+          pyinstaller -F -w main.py -p core.py -p asstes/logo.png -i asstes/logo.ico --hidden-import core
       - name: Publish package
         uses: actions/upload-artifact@v4
         with:
@@ -63,7 +63,7 @@ jobs:
       - name: Build code
         run: |
           pip install pyinstaller
-          pyinstaller -F main.py -p core.py --hidden-import core
+          pyinstaller -F -w main.py -p core.py -p asstes/logo.png -i asstes/logo.ico --hidden-import core
       - name: Publish package
         uses: actions/upload-artifact@v4
         with:
