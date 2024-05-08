@@ -6,6 +6,7 @@ import asyncio
 main = Tk()
 main.title("星海部署-XinghaiDeploy")
 main.geometry("550x300")
+main.resizable(0,0) #防止用户调整尺寸
 
 # main.iconphoto(False, PhotoImage(file='./asstes/logo.png'))
 # 上面那行设置图标的，不知道为什么打包后找不到文件。
