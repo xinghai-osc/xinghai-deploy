@@ -1,5 +1,5 @@
 from tkinter import *
-import core
+from . import core
 import sys
 import asyncio
 
