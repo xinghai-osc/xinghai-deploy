@@ -14,6 +14,10 @@ async def deploy(text):
         # 下载安装程序
         print(f"正在下载 {app_list[id]['name']}...")
         installer = requests.get(app_list[id]['url'])
+        try:
+            argument=app_list[id]['argument']
+        except Exception:
+            argument=""
         file_path = os.getcwd()+R"\xinghai\deploy\installer_"+app_list[id]['name']+"_installer.exe"
          # 创建临时文件并写入安装程序内容
         os.makedirs(os.getcwd()+"\\xinghai\\deploy", exist_ok=True)
@@ -22,6 +26,6 @@ async def deploy(text):
             print(f"{app_list[id]['name']} 的临时文件路径: {file_path}")
             # 在命令行中启动安装程序
             f.close()
-            os.system('start '+file_path)  # 使用文件名启动，避免路径问题
+            os.system('start '+file_path+" "+argument)  # 使用文件名启动，避免路径问题
         id=id+1
     exit(0)
