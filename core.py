@@ -1,4 +1,5 @@
 # 导入所需的库
+import sys
 from tkinter import *
 import requests
 import json
@@ -26,6 +27,11 @@ async def deploy(text):
             print(f"{app_list[id]['name']} 的临时文件路径: {file_path}")
             # 在命令行中启动安装程序
             f.close()
-            os.system('start '+file_path+" "+argument)  # 使用文件名启动，避免路径问题
+            if sys.platform.startwith('linux'):
+                os.system('./'+file_path+" "+argument)
+            elif sys.platform.startwith('win'):
+                os.system('start '+file_path+" "+argument)  # 使用文件名启动，避免路径问题
+            else:
+                print("不支持的操作系统")
         id=id+1
     exit(0)
