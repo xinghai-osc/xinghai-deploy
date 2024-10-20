@@ -19,7 +19,10 @@ async def deploy(text):
             argument=app_list[id]['argument']
         except Exception:
             argument=""
-        file_path = os.getcwd()+R"\xinghai\deploy\installer_"+app_list[id]['name']+"_installer.exe"
+        if sys.platform.startwith('win'):
+            file_path = os.getcwd()+R"\xinghai\deploy\installer_"+app_list[id]['name']+"_installer.exe"
+        elif sys.platform.startwith('linux'):
+            file_path = os.getcwd()+R"\xinghai\deploy\installer_"+app_list[id]['name']+"_installer"
          # 创建临时文件并写入安装程序内容
         os.makedirs(os.getcwd()+"\\xinghai\\deploy", exist_ok=True)
         with open(file_path, 'wb') as f:
